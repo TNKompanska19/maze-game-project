@@ -2,6 +2,8 @@
 #include<iomanip>
 #include<conio.h>
 
+using namespace std;
+
 #define KEY_UP 72
 #define KEY_DOWN 80
 #define KEY_LEFT 75
@@ -81,10 +83,10 @@ void menu(int counter) {
 
 }
 
-void resetMaze(char* grid[], int width, int height, char wall) {
+void resetMaze(char* maze[], int width, int height, char wall) {
     for (int i = 0; i < width; i++) {
         for (int j = 0; j < height; j++) {
-            grid[i][j] = wall;
+            maze[i][j] = wall;
         }
     }
 }
@@ -94,60 +96,120 @@ int isInPath(int x, int y, int width, int height) {
     return false;
 }
 
-void visit(int x, int y, char* grid[], int width, int height, char wall) {
-    grid[x][y] = ' ';
+void checkIfPossibleMove(int x, int y, char* maze[], int width, int height, char wall) {
+    maze[x][y] = ' ';
 
-    int dirs[4] = { 0, 1, 2, 3 };
+    int direction[4] = { 0, 1, 2, 3 };
 
     for (int i = 0; i < 4; ++i) {
         int r = rand() & 3;
-        int temp = dirs[r];
-        dirs[r] = dirs[i];
-        dirs[i] = temp;
+        int temp = direction[r];
+        direction[r] = direction[i];
+        direction[i] = temp;
     }
 
     for (int i = 0; i < 4; ++i) {
-        int dx = 0, dy = 0;
+        int nextX = 0, nextY = 0;
 
-        switch (dirs[i]) {
-        case 0: dy = -1; break;
-        case 1: dx = 1; break;
-        case 2: dy = 1; break;
-        case 3: dx = -1; break;
+        switch (direction[i]) {
+        case 0: nextY = -1; break;
+        case 1: nextX = 1; break;
+        case 2: nextY = 1; break;
+        case 3: nextX = -1; break;
         }
 
-        int x2 = x + (dx * 2);
-        int y2 = y + (dy * 2);
+        int x2 = x + (nextX * 2);
+        int y2 = y + (nextY * 2);
 
         if (isInPath(x2, y2, width, height)) {
-            if (grid[x2][y2] == wall) {
-                grid[x2 - dx][y2 - dy] = ' ';
-                visit(x2, y2, grid, width, height, wall);
+            if (maze[x2][y2] == wall) {
+                maze[x2 - nextX][y2 - nextY] = ' ';
+                checkIfPossibleMove(x2, y2, maze, width, height, wall);
             }
         }
     }
-    grid[1][0] = ' ';
-    grid[width - 2][height - 1] = ' ';
+    maze[1][0] = ' ';
+    maze[width - 2][height - 1] = ' ';
 }
 
-void generateMaze(char* grid[], int width, int height, char wall) {
+void generateMaze(char* maze[], int width, int height, char wall) {
     srand(time(0));
-    resetMaze(grid, width, height, wall);
-    visit(1, 1, grid, width, height, wall);
+    resetMaze(maze, width, height, wall);
+    checkIfPossibleMove(1, 1, maze, width, height, wall);
+}
+
+bool runGame(char player, char trace, char wall, int height, int width) {
+    system("cls");
+
+    int yPos = 1, xPos = 0;
+
+    char** maze = new char* [height];
+    for (int i = 0; i < height; i++) maze[i] = new char[width];
+
+    generateMaze(maze, height, width, wall);
+
+    maze[1][0] = player;
+
+    for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++) {
+            std::cout << maze[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+
+    while (yPos != height - 2 || xPos != width - 1) {
+        char ch = _getch();
+
+        switch ((int)ch) {
+        case 72: {
+            if (yPos != 0 && maze[yPos - 1][xPos] != wall) {
+                maze[yPos][xPos] = trace;
+                maze[--yPos][xPos] = player;
+            }
+        } break;
+        case 75: {
+            if (xPos != 0 && maze[yPos][xPos - 1] != wall) {
+                maze[yPos][xPos] = trace;
+                maze[yPos][--xPos] = player;
+            }
+        } break;
+        case 77: {
+            if (xPos != width - 1 && maze[yPos][xPos + 1] != wall) {
+                maze[yPos][xPos] = trace;
+                maze[yPos][++xPos] = player;
+            }
+        } break;
+        case 80: {
+            if (yPos != height - 1 && maze[yPos + 1][xPos] != wall) {
+                maze[yPos][xPos] = trace;
+                maze[++yPos][xPos] = player;
+            }
+        } break;
+        }
+
+        system("cls");
+
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                std::cout << maze[i][j] << " ";
+            }
+            std::cout << std::endl;
+        }
+    }
+
+    for (int i = 0; i < height; i++) {
+        delete[] maze[i];
+    }
+
+    return 0;
 }
 
 bool menuInput() {
     int choice;
     int counter = 1;
 
-    int height = 15, width = 15;
-
-    char wall = '#';
-
-    char** maze = new char* [height];
-    for (int i = 0; i < height; i++) maze[i] = new char[width];
-
     menu(counter);
+
     while (true)
     {
         switch ((choice = _getch())) {
@@ -169,20 +231,16 @@ bool menuInput() {
         break;
         case ENTER: {
             if (counter == 1) {
-                system("cls");
-                generateMaze(maze, height, width, wall);
-                for (int i = 0; i < height; i++) {
-                    for (int j = 0; j < width; j++) {
-                        std::cout << maze[i][j] << " ";
-                    }
-                    std::cout << std::endl;
+                char player = '?';
+                char trace = '.';
+                char wall = '#';
+
+                int height = 15, width = 15;
+                while (runGame(player, trace, wall, height, width)) {
+                    runGame(player, trace, wall, height, width);
                 }
-                for (int i = 0; i < height; i++) {
-                    delete[] maze[i];
-                }
+                menuInput();
             }
-            if (counter == 2)std::cout << "rules";
-            if (counter == 3)return 0;
         }
                   break;
         }// enter
@@ -193,5 +251,4 @@ int main()
     do {
         menuInput();
     } while (menuInput());
-   
 }
