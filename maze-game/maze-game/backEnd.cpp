@@ -2,6 +2,7 @@
 #include <conio.h>
 
 #include "backEnd.h"
+#include "frontEnd.h"
 
 void resetMaze(char* maze[], int width, int height, char wall) {
     for (int i = 0; i < width; i++) {
@@ -60,7 +61,7 @@ void generateMaze(char* maze[], int width, int height, char wall) {
 
 bool runGame(char player, char trace, char wall, int height, int width) {
     system("cls");
-
+   
     int yPos = 1, xPos = 0;
 
     char** maze = new char* [height];
@@ -108,7 +109,7 @@ bool runGame(char player, char trace, char wall, int height, int width) {
         }
 
         system("cls");
-
+      
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 std::cout << maze[i][j] << " ";
