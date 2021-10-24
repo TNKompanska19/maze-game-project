@@ -6,3 +6,4 @@ void nightOne();
 void nightTwo();
 void nightThree();
 void nightFour();
+void nightFive();
