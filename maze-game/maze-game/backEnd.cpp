@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <conio.h>
 
 #include "backEnd.h"
@@ -61,28 +62,30 @@ void generateMaze(char* maze[], int width, int height, char wall) {
 
 bool runGame(char player, char trace, char wall, int height, int width) {
     system("cls");
-   
+    nightOne();
+    std::cout << "\033[0;32m";
     int yPos = 1, xPos = 0;
 
     char** maze = new char* [height];
     for (int i = 0; i < height; i++) maze[i] = new char[width];
 
     generateMaze(maze, height, width, wall);
-
+    
     maze[1][0] = player;
 
     for (int i = 0; i < height; i++) {
+        std::cout << std::setw(85);
         for (int j = 0; j < width; j++) {
             std::cout << maze[i][j] << " ";
         }
         std::cout << std::endl;
     }
-
     while (yPos != height - 2 || xPos != width - 1) {
         char ch = _getch();
 
         switch ((int)ch) {
         case 72: {
+            
             if (yPos != 0 && maze[yPos - 1][xPos] != wall) {
                 maze[yPos][xPos] = trace;
                 maze[--yPos][xPos] = player;
@@ -109,8 +112,10 @@ bool runGame(char player, char trace, char wall, int height, int width) {
         }
 
         system("cls");
-      
+        nightOne();
+        std::cout << "\033[0;32m";
         for (int i = 0; i < height; i++) {
+            std::cout << std::setw(85);
             for (int j = 0; j < width; j++) {
                 std::cout << maze[i][j] << " ";
             }

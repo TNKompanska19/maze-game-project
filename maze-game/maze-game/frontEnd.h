@@ -5,3 +5,4 @@ bool menuInput();
 void nightOne();
 void nightTwo();
 void nightThree();
+void nightFour();
