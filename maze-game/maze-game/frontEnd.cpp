@@ -88,6 +88,7 @@ void menu(int counter) {
 bool menuInput() {
     int choice;
     int counter = 1;
+    int night = 1;
 
     menu(counter);
 
@@ -117,8 +118,8 @@ bool menuInput() {
                 char wall = '#';
 
                 int height = 15, width = 15;
-                while (runGame(player, trace, wall, height, width)) {
-                    runGame(player, trace, wall, height, width);
+                while (night <= 5) {
+                    runGame(player, trace, wall, height, width, night++);
                 }
                 system("CLS");
                 menuInput();
@@ -203,5 +204,4 @@ void nightFive() {
     std::cout << std::setw(150) << "         ///       /////   ////      ///////////  ///       ///         ///                   /////           \n\n";
     std::cout << std::setw(152) << "===============================================================================================================\n\n";
     std::cout << "\n\n\n\n\n\n\n";
-
 }

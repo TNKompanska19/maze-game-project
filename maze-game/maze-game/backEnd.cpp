@@ -18,7 +18,7 @@ int isInPath(int x, int y, int width, int height) {
     return false;
 }
 
-void checkIfPossibleMove(int x, int y, char* maze[], int width, int height, char wall) {
+void generetePath(int x, int y, char* maze[], int width, int height, char wall) {
     maze[x][y] = ' ';
 
     int direction[4] = { 0, 1, 2, 3 };
@@ -46,7 +46,7 @@ void checkIfPossibleMove(int x, int y, char* maze[], int width, int height, char
         if (isInPath(x2, y2, width, height)) {
             if (maze[x2][y2] == wall) {
                 maze[x2 - nextX][y2 - nextY] = ' ';
-                checkIfPossibleMove(x2, y2, maze, width, height, wall);
+                generetePath(x2, y2, maze, width, height, wall);
             }
         }
     }
@@ -57,12 +57,23 @@ void checkIfPossibleMove(int x, int y, char* maze[], int width, int height, char
 void generateMaze(char* maze[], int width, int height, char wall) {
     srand(time(0));
     resetMaze(maze, width, height, wall);
-    checkIfPossibleMove(1, 1, maze, width, height, wall);
+    generetePath(1, 1, maze, width, height, wall);
 }
 
-bool runGame(char player, char trace, char wall, int height, int width) {
+bool runGame(char player, char trace, char wall, int height, int width, int night) {
+    width = 15;
+    height = 15;
+
     system("cls");
-    nightOne();
+
+    switch (night) {
+    case 1: nightOne(); break;
+    case 2: nightTwo(); break;
+    case 3: nightThree(); break;
+    case 4: nightFour(); break;
+    case 5: nightFive(); break;
+    }
+
     std::cout << "\033[0;32m";
     int yPos = 1, xPos = 0;
 
@@ -112,7 +123,13 @@ bool runGame(char player, char trace, char wall, int height, int width) {
         }
 
         system("cls");
-        nightOne();
+        switch (night) {
+        case 1: nightOne(); break;
+        case 2: nightTwo(); break;
+        case 3: nightThree(); break;
+        case 4: nightFour(); break;
+        case 5: nightFive(); break;
+        }
         std::cout << "\033[0;32m";
         for (int i = 0; i < height; i++) {
             std::cout << std::setw(85);
