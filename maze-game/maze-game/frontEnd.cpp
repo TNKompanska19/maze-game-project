@@ -119,7 +119,7 @@ bool menuInput() {
 
                 int height = 15, width = 15;
                 while (night <= 5) {
-                    runGame(player, trace, wall, height, width, night++);
+                    runGame(player, trace, wall, night++);
                 }
                 system("CLS");
                 menuInput();

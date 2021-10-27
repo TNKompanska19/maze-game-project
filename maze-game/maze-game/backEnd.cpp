@@ -60,26 +60,50 @@ void generateMaze(char* maze[], int width, int height, char wall) {
     generetePath(1, 1, maze, width, height, wall);
 }
 
-bool runGame(char player, char trace, char wall, int height, int width, int night) {
-    width = 15;
-    height = 15;
-
+bool runGame(char player, char trace, char wall, int night) {
     system("cls");
 
+    int width;
+    int height;
+
     switch (night) {
-    case 1: nightOne(); break;
-    case 2: nightTwo(); break;
-    case 3: nightThree(); break;
-    case 4: nightFour(); break;
-    case 5: nightFive(); break;
+    case 1: {
+        width = 15;
+        height = 15;
+        nightOne();
+        break;
+    }
+    case 2: {
+        width = 21;
+        height = 21;
+        nightTwo();
+        break;
+    }
+    case 3: {
+        width = 25;
+        height = 25;
+        nightThree();
+        break;
+    }
+    case 4: {
+        width = 31;
+        height = 31;
+        nightFour();
+        break;
+    }
+    case 5: {
+        width = 35;
+        height = 35;
+        nightFive();
+        break;
+    }
     }
 
-    std::cout << "\033[0;32m";
     int yPos = 1, xPos = 0;
-
     char** maze = new char* [height];
     for (int i = 0; i < height; i++) maze[i] = new char[width];
 
+    std::cout << "\033[0;32m";
     generateMaze(maze, height, width, wall);
     
     maze[1][0] = player;
