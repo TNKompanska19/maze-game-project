@@ -1,6 +1,8 @@
-<h1 align="center">Maze Game Project</h1>
+<h1 align="center"><i>Maze Game Project - 2021</i></h1>
 <br>
-<p align="center"><img src="https://imgur.com/1M4Ak0q.jpg" width="250" height="250" alt="Kukuruz"></p>
+<p align="center"><img src="https://imgur.com/1M4Ak0q.jpg" width="250" height="250" alt="Kukuruz"></p><br>
+
+<h2 align="center"><i>Our team</i></h2>
 <table align="center">
   <tr>
     <th>Participant</th>
@@ -25,7 +27,8 @@
   <tr>
     <th><i>Daniel Kolev</i></th>
     <th>QA ✔</th>
-  </tr>
-  
-  
+  </tr> 
 </table>
+
+<h2 align="center"><i>The project's task</i></h2>
+<p align="center"> The project's task is to create a maze game which <br> has to be invented by us. <br> It can be everything as long as it is part of the maze games. </p>
