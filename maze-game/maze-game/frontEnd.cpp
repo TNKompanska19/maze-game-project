@@ -132,6 +132,10 @@ bool menuInput() {
                   system("CLS");
                    menuInput();
                 }
+                case 2: {
+                    system("CLS");
+                    displayHowToPlay();
+                }
                 case 3: {
                     exit();
                 }
@@ -218,6 +222,56 @@ void dispalynNightMessage(int night) {
         std::cout << std::setw(152) << "===============================================================================================================\n\n";
         std::cout << "\n\n\n\n\n\n\n";
     } break;
+    }
+}
+
+void displayHowToPlay() {
+    std::cout << std::setw(149) << "___________________________________________________________________________________________________________\n";
+    std::cout << std::setw(150) << "|                                                                                                           |\n";
+    std::cout << std::setw(150) << "|                                                                                                           |\n";
+    std::cout << std::setw(150) << "|                                                                                                           |\n";
+    std::cout << std::setw(150) << "|             ________________________________________________________________________________              |\n";
+    std::cout << std::setw(150) << "|            |                                                                                |             |\n";
+    std::cout << std::setw(150) << "|            |                                                                                |             |\n";
+    std::cout << std::setw(150) << "|            |                              H O W  T O  P L A Y                               |             |\n";
+    std::cout << std::setw(150) << "|            |                                                                                |             |\n";
+    std::cout << std::setw(150) << "|            |                                                                                |             |\n";
+    std::cout << std::setw(150) << "|            |            1) Every time you start the game your position will be in           |             |\n";
+    std::cout << std::setw(150) << "|            |               the top right cornen and the end of the maze will be in          |             |\n";
+    std::cout << std::setw(150) << "|            |               the bottom left cornen.                                          |             |\n";
+    std::cout << std::setw(150) << "|            |                                                                                |             |\n";
+    std::cout << std::setw(150) << "|            |                                                                                |             |\n";
+    std::cout << std::setw(150) << "|            |            2) The game have 5 nights. Every previous night is always           |             |\n";
+    std::cout << std::setw(150) << "|            |               easier than the next one. Also, with every night the maze        |             |\n";
+    std::cout << std::setw(150) << "|            |               gets bigger.                                                     |             |\n";
+    std::cout << std::setw(150) << "|            |                                                                                |             |\n";
+    std::cout << std::setw(150) << "|            |                                                                                |             |\n";
+    std::cout << std::setw(150) << "|            |            3) There are two modes that exist. The first one is the easy        |             |\n";
+    std::cout << std::setw(150) << "|            |               one and the second is the hard one. If you choose to play        |             |\n";
+    std::cout << std::setw(150) << "|            |               on hard mode spiders will appear.                                |             |\n";
+    std::cout << std::setw(150) << "|            |                                                                                |             |\n";
+    std::cout << std::setw(150) << "|            |                                                                                |             |\n";
+    std::cout << std::setw(150) << "|            |            4) You can move with the arrows on your keyboard!                   |             |\n";
+    std::cout << std::setw(150) << "|            |                                                                                |             |\n";
+    std::cout << std::setw(150) << "|            |                                                                                |             |\n";
+    std::cout << std::setw(150) << "|            |            5) If you succeed and go through all 5 night of game                |             |\n";
+    std::cout << std::setw(150) << "|            |               -TO BE CONTINUED- message will appear.                           |             |\n";
+    std::cout << std::setw(150) << "|            |                                                                                |             |\n";
+    std::cout << std::setw(150) << "|            |                                                                                |             |\n";
+    std::cout << std::setw(150) << "|            |            6) If you want to leave the game you need to press                  |             |\n";
+    std::cout << std::setw(150) << "|            |               the escape key.                                                  |             |\n";
+    std::cout << std::setw(150) << "|            |                                                                                |             |\n";
+    std::cout << std::setw(150) << "|            |                                                                                |             |\n";
+    std::cout << std::setw(150) << "|            |            7) Enjoy the game :) !                                              |             |\n";
+    std::cout << std::setw(150) << "|            |                                                                                |             |\n";
+    std::cout << std::setw(150) << "|            |________________________________________________________________________________|             |\n";
+    std::cout << std::setw(150) << "|                                                                                                           |\n";
+    std::cout << std::setw(150) << "|                                                                                                           |\n";
+    std::cout << std::setw(150) << "|                                                                                                           |\n";
+    std::cout << std::setw(150) << "|___________________________________________________________________________________________________________|\n";
+    char toReturn = _getch();
+    if (toReturn == 27) {
+        menuInput();
     }
 }
 
