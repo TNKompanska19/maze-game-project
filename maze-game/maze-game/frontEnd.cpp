@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include <conio.h>
+#include <windows.h>
 
 #include "frontEnd.h"
 #include "backEnd.h"
@@ -83,13 +84,17 @@ void menu(int counter) {
 
 
 }
-
-
+bool exit(){
+    system("CLS");
+    std::cout << "Exited";
+    return 0;
+}
 bool menuInput() {
     int choice;
     int counter = 1;
     int night = 1;
 
+    
     menu(counter);
 
     while (true)
@@ -105,24 +110,32 @@ bool menuInput() {
         break;
         case KEY_DOWN:
         {
-            if (counter == 3)  counter = 0;
+            if (counter == 3) {
+                counter = 0;
+            }
+            
             counter++;
             system("CLS");
             menu(counter);
         }// key down
         break;
         case ENTER: {
-            if (counter == 1) {
-                char player = '?';
-                char trace = '.';
-                char wall = '#';
-
-                int height = 15, width = 15;
-                while (night <= 5) {
-                    runGame(player, trace, wall, night++);
+            switch (counter) {
+                case 1: {
+                  char player = '?';
+                  char trace = '.';
+                  char wall = '#';
+    
+                   int height = 15, width = 15;
+                   while (night <= 5) {
+                       runGame(player, trace, wall, night++);
+                   }
+                  system("CLS");
+                   menuInput();
                 }
-                system("CLS");
-                menuInput();
+                case 3: {
+                    exit();
+                }
             }
         }
                   break;
