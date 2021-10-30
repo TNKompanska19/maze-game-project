@@ -65,43 +65,41 @@ bool runGame(char player, char trace, char wall, int night) {
 
     int width;
     int height;
-
+    
     switch (night) {
     case 1: {
         width = 15;
         height = 15;
-        nightOne();
         break;
     }
     case 2: {
         width = 21;
         height = 21;
-        nightTwo();
         break;
     }
     case 3: {
         width = 25;
         height = 25;
-        nightThree();
         break;
     }
     case 4: {
         width = 31;
         height = 31;
-        nightFour();
         break;
     }
     case 5: {
         width = 35;
         height = 35;
-        nightFive();
         break;
     }
     }
 
     int yPos = 1, xPos = 0;
+    int spacing = 100 - width;
     char** maze = new char* [height];
     for (int i = 0; i < height; i++) maze[i] = new char[width];
+
+    dispalynNightMessage(night);
 
     std::cout << "\033[0;32m";
     generateMaze(maze, height, width, wall);
@@ -109,7 +107,7 @@ bool runGame(char player, char trace, char wall, int night) {
     maze[1][0] = player;
 
     for (int i = 0; i < height; i++) {
-        std::cout << std::setw(85);
+        std::cout << std::setw(spacing);
         for (int j = 0; j < width; j++) {
             std::cout << maze[i][j] << " ";
         }
@@ -144,19 +142,17 @@ bool runGame(char player, char trace, char wall, int night) {
                 maze[++yPos][xPos] = player;
             }
         } break;
+        case 27: {
+            menuInput(); break;
+        }
         }
 
         system("cls");
-        switch (night) {
-        case 1: nightOne(); break;
-        case 2: nightTwo(); break;
-        case 3: nightThree(); break;
-        case 4: nightFour(); break;
-        case 5: nightFive(); break;
-        }
+        dispalynNightMessage(night);
+
         std::cout << "\033[0;32m";
         for (int i = 0; i < height; i++) {
-            std::cout << std::setw(85);
+            std::cout << std::setw(spacing);
             for (int j = 0; j < width; j++) {
                 std::cout << maze[i][j] << " ";
             }
