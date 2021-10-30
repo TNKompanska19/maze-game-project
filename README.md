@@ -1,7 +1,13 @@
 <h1 align="center"><i>Maze Game Project - 2021</i></h1>
 <br>
-<p align="center"><img src="https://imgur.com/1M4Ak0q.jpg" width="250" height="250" alt="Kukuruz"></p><br>
-
+<p align="center"><img src="https://imgur.com/1M4Ak0q.jpg" width="200" height="200" alt="Kukuruz"></p><br>
+ <p align = "center">
+   <img src = "https://img.shields.io/github/languages/count/TNKompanska19/maze-game-project?style=for-the-badge">
+   <img src = "https://img.shields.io/github/contributors/TNKompanska19/maze-game-project?style=for-the-badge">
+   <img src = "https://img.shields.io/github/repo-size/TNKompanska19/maze-game-project?style=for-the-badge">
+   <img src = "https://img.shields.io/github/last-commit/TNKompanska19/maze-game-project?style=for-the-badge">
+   <img src = "https://img.shields.io/github/languages/top/TNKompanska19/maze-game-project?style=for-the-badge">
+  </p>
 <h2 align="center"><i>Our team</i></h2>
 <table align="center">
   <tr>
