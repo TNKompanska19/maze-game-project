@@ -2,6 +2,7 @@
 
 void menu(int counter);
 bool menuInput();
-void dispalynNightMessage(int night);
+void displaySettingsMenu();
+void displayNightMessage(int night);
 void displayHowToPlay();
 bool endGameLabel();

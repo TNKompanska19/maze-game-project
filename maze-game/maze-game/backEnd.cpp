@@ -99,7 +99,7 @@ bool runGame(char player, char trace, char wall, int night) {
     char** maze = new char* [height];
     for (int i = 0; i < height; i++) maze[i] = new char[width];
 
-    dispalynNightMessage(night);
+    displayNightMessage(night);
 
     std::cout << "\033[0;32m";
     generateMaze(maze, height, width, wall);
@@ -148,7 +148,7 @@ bool runGame(char player, char trace, char wall, int night) {
         }
 
         system("cls");
-        dispalynNightMessage(night);
+        displayNightMessage(night);
 
         std::cout << "\033[0;32m";
         for (int i = 0; i < height; i++) {
