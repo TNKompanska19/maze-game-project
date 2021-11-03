@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include <conio.h>
+#include <Windows.h>
 
 #include "backEnd.h"
 #include "frontEnd.h"
@@ -55,7 +56,7 @@ void generetePath(int x, int y, char* maze[], int width, int height, char wall) 
 }
 
 void generateMaze(char* maze[], int width, int height, char wall) {
-    srand(time(0));
+    srand(time(NULL));
     resetMaze(maze, width, height, wall);
     generetePath(1, 1, maze, width, height, wall);
 }
@@ -113,41 +114,46 @@ bool runGame(char player, char trace, char wall, int night) {
         }
         std::cout << std::endl;
     }
-    while (yPos != height - 2 || xPos != width - 1) {
-        char ch = _getch();
 
-        switch ((int)ch) {
-        case 72: {
-            
-            if (yPos != 0 && maze[yPos - 1][xPos] != wall) {
-                maze[yPos][xPos] = trace;
-                maze[--yPos][xPos] = player;
-            }
-        } break;
-        case 75: {
-            if (xPos != 0 && maze[yPos][xPos - 1] != wall) {
-                maze[yPos][xPos] = trace;
-                maze[yPos][--xPos] = player;
-            }
-        } break;
-        case 77: {
-            if (xPos != width - 1 && maze[yPos][xPos + 1] != wall) {
-                maze[yPos][xPos] = trace;
-                maze[yPos][++xPos] = player;
-            }
-        } break;
-        case 80: {
-            if (yPos != height - 1 && maze[yPos + 1][xPos] != wall) {
-                maze[yPos][xPos] = trace;
-                maze[++yPos][xPos] = player;
-            }
-        } break;
-        case 27: {
-            menuInput(); break;
-        }
-        }
+    while ((yPos != height - 2 || xPos != width - 1)) {
+        unsigned char ch = _getch();
 
+        if (ch == 224) {
+            unsigned char ch2 = _getch();
+
+            switch (ch2) {
+            case 72: {
+                if (yPos != 0 && maze[yPos - 1][xPos] != wall) {
+                    maze[yPos][xPos] = trace;
+                    maze[--yPos][xPos] = player;
+                }
+            } break;
+            case 75: {
+                if (xPos != 0 && maze[yPos][xPos - 1] != wall) {
+                    maze[yPos][xPos] = trace;
+                    maze[yPos][--xPos] = player;
+                }
+            } break;
+            case 77: {
+                if (xPos != width - 1 && maze[yPos][xPos + 1] != wall) {
+                    maze[yPos][xPos] = trace;
+                    maze[yPos][++xPos] = player;
+                }
+            } break;
+            case 80: {
+                if (yPos != height - 1 && maze[yPos + 1][xPos] != wall) {
+                    maze[yPos][xPos] = trace;
+                    maze[++yPos][xPos] = player;
+                }
+            } break;
+            }
+        }
+        else if (ch == 27) {
+            menuInput();
+        }
+        
         system("cls");
+        
         displayNightMessage(night);
 
         std::cout << "\033[0;32m";
