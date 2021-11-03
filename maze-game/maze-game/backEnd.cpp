@@ -61,12 +61,20 @@ void generateMaze(char* maze[], int width, int height, char wall) {
     generetePath(1, 1, maze, width, height, wall);
 }
 
-bool runGame(char player, char trace, char wall, int night) {
+int checkIfPossibleEnemyMove(int direction, char* maze[], int width, int height, int yEnemyPos, int xEnemyPos, char wall) {
+    if (direction == 0 && maze[yEnemyPos - 1][xEnemyPos] != wall) return 0;
+    if (direction == 1 && maze[yEnemyPos][xEnemyPos + 1] != wall && yEnemyPos != width - 2 && xEnemyPos != height - 1) return 1;
+    if (direction == 2 && maze[yEnemyPos + 1][xEnemyPos] != wall) return 2;
+    if (direction == 3 && maze[yEnemyPos][xEnemyPos - 1] != wall && yEnemyPos != 1 && xEnemyPos != 0) return 3;
+    return -1;
+}
+
+bool runGame(char player, char enemy, char trace, char wall, int night) {
     system("cls");
 
     int width;
     int height;
-    
+
     switch (night) {
     case 1: {
         width = 15;
@@ -96,7 +104,10 @@ bool runGame(char player, char trace, char wall, int night) {
     }
 
     int yPos = 1, xPos = 0;
+    int yEnemyPos = width - 2, xEnemyPos = height - 1;
+
     int spacing = 100 - width;
+
     char** maze = new char* [height];
     for (int i = 0; i < height; i++) maze[i] = new char[width];
 
@@ -104,8 +115,9 @@ bool runGame(char player, char trace, char wall, int night) {
 
     std::cout << "\033[0;32m";
     generateMaze(maze, height, width, wall);
-    
+
     maze[1][0] = player;
+    maze[width - 2][height - 1] = enemy;
 
     for (int i = 0; i < height; i++) {
         std::cout << std::setw(spacing);
@@ -116,6 +128,23 @@ bool runGame(char player, char trace, char wall, int night) {
     }
 
     while ((yPos != height - 2 || xPos != width - 1)) {
+        int direction[4] = { 0, 1, 2, 3 };
+        int index, n;
+
+        for (int i = 0; i < 4; ++i) {
+            int r = rand() & 3;
+            int temp = direction[r];
+            direction[r] = direction[i];
+            direction[i] = temp;
+        }
+        for (int i = 0; i < 4; i++) {
+            if (checkIfPossibleEnemyMove(direction[i], maze, height, width, yEnemyPos, xEnemyPos, wall) >= 0) {
+                index = i;
+                n = checkIfPossibleEnemyMove(direction[i], maze, height, width, yEnemyPos, xEnemyPos, wall);
+                break;
+            }
+        }
+
         unsigned char ch = _getch();
 
         if (ch == 224) {
@@ -151,16 +180,46 @@ bool runGame(char player, char trace, char wall, int night) {
         else if (ch == 27) {
             menuInput();
         }
-        
+
+        if (n == 0) {
+            maze[yEnemyPos][xEnemyPos] = ' ';
+            maze[--yEnemyPos][xEnemyPos] = enemy;
+        }
+        else if (n == 1) {
+            maze[yEnemyPos][xEnemyPos] = ' ';
+            maze[yEnemyPos][++xEnemyPos] = enemy;
+        }
+        else if (n == 2) {
+            maze[yEnemyPos][xEnemyPos] = ' ';
+            maze[++yEnemyPos][xEnemyPos] = enemy;
+        }
+        else if (n == 3) {
+            maze[yEnemyPos][xEnemyPos] = ' ';
+            maze[yEnemyPos][--xEnemyPos] = enemy;
+        }
+
         system("cls");
-        
+
+        if (yPos == yEnemyPos && xPos == xEnemyPos) {
+            std::cout << "You lost :(";
+            std::cin.get();
+            //std::cin.ignore();
+            menuInput();
+        }
+
         displayNightMessage(night);
+
+
 
         std::cout << "\033[0;32m";
         for (int i = 0; i < height; i++) {
             std::cout << std::setw(spacing);
             for (int j = 0; j < width; j++) {
                 std::cout << maze[i][j] << " ";
+                if (maze[i][j + 1] == enemy) {
+                    std::cout << "\033[0;31m" << maze[i][j + 1] << " " << "\033[0;32m";
+                    j++;
+                }
             }
             std::cout << std::endl;
         }
