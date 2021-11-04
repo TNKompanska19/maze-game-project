@@ -111,21 +111,29 @@ bool runGame(char player, char enemy, char trace, char wall, int night) {
     char** maze = new char* [height];
     for (int i = 0; i < height; i++) maze[i] = new char[width];
 
-    displayNightMessage(night);
-
-    std::cout << "\033[0;32m";
     generateMaze(maze, height, width, wall);
 
     maze[1][0] = player;
     maze[width - 2][height - 1] = enemy;
 
+    displayNightMessage(night);
+
+    std::cout << "\033[0;32m";
     for (int i = 0; i < height; i++) {
         std::cout << std::setw(spacing);
         for (int j = 0; j < width; j++) {
-            std::cout << maze[i][j] << " ";
+            if (maze[i][j] == player || (maze[i][j] == trace && trace != ' ')) {
+                std::cout << " " << "\033[0m" << maze[i][j] << "\033[0;32m";
+            }
+            else if (maze[i][j] == enemy) {
+                std::cout << " " << "\033[0;31m" << maze[i][j] << "\033[0;32m";
+            }
+            else std::cout << " " << maze[i][j];
         }
         std::cout << std::endl;
     }
+    std::cout << "xPos: " << xPos << "; yPos: " << yPos << std::endl;
+    std::cout << "xEnemyPos: " << xEnemyPos << "; yEnemyPos: " << yEnemyPos << std::endl;
 
     while ((yPos != height - 2 || xPos != width - 1)) {
         int direction[4] = { 0, 1, 2, 3 };
@@ -203,26 +211,44 @@ bool runGame(char player, char enemy, char trace, char wall, int night) {
         if (yPos == yEnemyPos && xPos == xEnemyPos) {
             std::cout << "You lost :(";
             std::cin.get();
-            //std::cin.ignore();
             menuInput();
         }
 
         displayNightMessage(night);
 
 
-
         std::cout << "\033[0;32m";
         for (int i = 0; i < height; i++) {
             std::cout << std::setw(spacing);
             for (int j = 0; j < width; j++) {
+                if (maze[i][j] == player || (maze[i][j] == trace && trace != ' ')) {
+                    std::cout << " " << "\033[0m" << maze[i][j] << "\033[0;32m";
+                }
+                else if (maze[i][j] == enemy) {
+                    std::cout << " " << "\033[0;31m" << maze[i][j] << "\033[0;32m";
+                }
+                else std::cout << " " << maze[i][j];
+            }
+            std::cout << std::endl;
+        }
+        std::cout << "xPos: " << xPos << "; yPos: " << yPos << std::endl;
+        std::cout << "xEnemyPos: " << xEnemyPos << "; yEnemyPos: " << yEnemyPos << std::endl;
+        /*std::cout << "\033[0;32m";
+        for (int i = 0; i < height; i++) {
+            std::cout << std::setw(spacing);
+            for (int j = 0; j < width; j++) {
                 std::cout << maze[i][j] << " ";
+                if (maze[i][j + 1] == player || maze[i][j + 1] == trace) {
+                    std::cout << "\033[0m" << maze[i][j + 1] << "\033[0;32m" << " ";
+                    j++;
+                }
                 if (maze[i][j + 1] == enemy) {
-                    std::cout << "\033[0;31m" << maze[i][j + 1] << " " << "\033[0;32m";
+                    std::cout << "\033[0;31m" << maze[i][j + 1] << "\033[0;32m" << " ";
                     j++;
                 }
             }
             std::cout << std::endl;
-        }
+        }*/
     }
 
     for (int i = 0; i < height; i++) {
