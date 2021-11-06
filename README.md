@@ -36,5 +36,11 @@
   </tr> 
 </table>
 
-<h2 align="center"><i>The project's task</i></h2>
+<h2 align="center"><i>💥The project's task💥</i></h2>
 <p align="center"> The project's task is to create a maze game which <br> has to be invented by us. <br> It can be everything as long as it is part of the maze games. </p>
+
+<h2 align="center"><i>💫Our idea💫</i></h2>
+<p align="center"> Our idea for the project is to make a maze game that is based on the film called "The Maze Runner". <br> You are the player who needs to escape the maze, but there is one big hurdle - THE ENEMY (spider). You should run from it and pass 5 nights escaping the maze. </p>
+<p align = "center"><img src="https://i.imgur.com/eu1voa4.png"></p>
+
+
