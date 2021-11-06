@@ -112,6 +112,11 @@ bool exit(){
     std::cout << "Exited";
     return 0;
 }
+void runHowToPlay() {
+    do {
+        displayHowToPlay();
+    } while (_getch() != 27);
+}
 bool menuInput() {
     int choice;
     int counter = 1;
@@ -163,7 +168,10 @@ bool menuInput() {
                 }
                 case 3: {
                     system("CLS");
-                    displayHowToPlay();
+                    do {
+                        displayHowToPlay();
+                        system("cls");
+                    } while (_getch() != 27);
                     break;
                 }
                 case 4: {
