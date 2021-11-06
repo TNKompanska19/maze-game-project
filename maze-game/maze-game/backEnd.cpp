@@ -6,6 +6,13 @@
 #include "backEnd.h"
 #include "frontEnd.h"
 
+#define KEY_UP 72
+#define KEY_DOWN 80
+#define KEY_LEFT 75
+#define KEY_RIGHT 77
+#define ENTER 13
+#define ESCAPE 27
+
 void resetMaze(char* maze[], int width, int height, char wall) {
     for (int i = 0; i < width; i++) {
         for (int j = 0; j < height; j++) {
@@ -159,25 +166,25 @@ bool runGame(char player, char enemy, char trace, char wall, int night) {
             unsigned char ch2 = _getch();
 
             switch (ch2) {
-            case 72: {
+            case KEY_UP: {
                 if (yPos != 0 && maze[yPos - 1][xPos] != wall) {
                     maze[yPos][xPos] = trace;
                     maze[--yPos][xPos] = player;
                 }
             } break;
-            case 75: {
+            case KEY_LEFT : {
                 if (xPos != 0 && maze[yPos][xPos - 1] != wall) {
                     maze[yPos][xPos] = trace;
                     maze[yPos][--xPos] = player;
                 }
             } break;
-            case 77: {
+            case KEY_RIGHT: {
                 if (xPos != width - 1 && maze[yPos][xPos + 1] != wall) {
                     maze[yPos][xPos] = trace;
                     maze[yPos][++xPos] = player;
                 }
             } break;
-            case 80: {
+            case KEY_DOWN: {
                 if (yPos != height - 1 && maze[yPos + 1][xPos] != wall) {
                     maze[yPos][xPos] = trace;
                     maze[++yPos][xPos] = player;
@@ -185,7 +192,7 @@ bool runGame(char player, char enemy, char trace, char wall, int night) {
             } break;
             }
         }
-        else if (ch == 27) {
+        else if (ch == ESCAPE) {
             menuInput();
         }
 
