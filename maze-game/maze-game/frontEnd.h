@@ -6,3 +6,5 @@ void displaySettingsMenu();
 void displayNightMessage(int night);
 void displayHowToPlay();
 bool endGameLabel();
+void gameOver();
+void gameOverInput();

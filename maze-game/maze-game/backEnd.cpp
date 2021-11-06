@@ -216,7 +216,7 @@ bool runGame(char player, char enemy, char trace, char wall, int night) {
         system("cls");
 
         if (yPos == yEnemyPos && xPos == xEnemyPos) {
-            std::cout << "You lost :(";
+            gameOverInput();
             std::cin.get();
             menuInput();
         }
