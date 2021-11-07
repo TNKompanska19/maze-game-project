@@ -86,7 +86,7 @@ void menu(int counter) {
         std::cout << "                   ////// |||||| \\\\\\\\\\\\\               |  | * *     * *     * *|_____________|    --------    H O W  T O  P L A Y     --------     | *     * *     | |*     * *     * *|  |        ////    ////////////\n";
         std::cout << "                  //////  ||||||  \\\\\\\\\\\\\              |  |      *       *       *      *    |                                                     |     __________| |_________________|  |       ////    ////////////    \n";
         std::cout << "                 //////   ||||||   \\\\\\\\\\\\\             |  |      *       *       *      *    |                                                     |    |  ____________________________   |              ////// \\\\\\\\\\\\\n";
-        std::cout << "                //////    ||||||    \\\\\\\\\\\\\            |  | * *     * *     * *     * *      |                      E X I T                       |    | |   * *        * *       * * |  |             //////   \\\\\\\\\\\\\n";
+        std::cout << "                //////    ||||||    \\\\\\\\\\\\\            |  | * *     * *     * *     * *      |                      E X I T                        |    | |   * *        * *       * * |  |             //////   \\\\\\\\\\\\\n";
         std::cout << "               //////     ||||||     \\\\\\\\\\\\\           |  |      *       *       *      *    |_____________________________________________________|    | |*       *  *       * *      |  |            //////     \\\\\\\\\\\\\n";
     }
     else if (counter == 4) {
@@ -114,10 +114,11 @@ void menu(int counter) {
 
 
 }
-bool exit(){
+void exit(){
     system("CLS");
-    std::cout << "Exited";
-    return 0;
+    std::cout << "Thank you for playing!";
+    std::cin.get();
+    std::cin.ignore();
 }
 bool menuInput() {
     int counter = 1;
@@ -129,7 +130,7 @@ bool menuInput() {
 
     menu(counter);
 
-    while (true)
+    do 
     {
         switch (_getch()) {
         case KEY_UP:
@@ -177,7 +178,9 @@ bool menuInput() {
             }
         } break;
         }
-    }
+        
+    } while (true);
+    return 1;
 }
 void displaySettingsMenu(int counter) {
     std::cout << "\n\n\n";
