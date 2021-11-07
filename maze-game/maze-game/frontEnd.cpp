@@ -114,9 +114,9 @@ void menu(int counter) {
 
 
 }
-void exit(){
-    system("CLS");
-    std::cout << "Thank you for playing!";
+void exit() {
+    system("cls");
+    std::cout << "\nThank you for playing!";
     std::cin.get();
     std::cin.ignore();
 }
@@ -456,19 +456,21 @@ void displayHowToPlay() {
     std::cout << std::setw(150) << "|            |               one and the second is the hard one. If you choose to play        |             |\n";
     std::cout << std::setw(150) << "|            |               on hard mode spiders will appear.                                |             |\n";
     std::cout << std::setw(150) << "|            |                                                                                |             |\n";
+    std::cout << std::setw(150) << "|            |            4) Dont get too close to the spiders or you may lose the game!      |             |\n";
     std::cout << std::setw(150) << "|            |                                                                                |             |\n";
-    std::cout << std::setw(150) << "|            |            4) You can move with the arrows on your keyboard!                   |             |\n";
+    std::cout << std::setw(150) << "|            |                                                                                |             |\n";
+    std::cout << std::setw(150) << "|            |            5) You can move with the arrows on your keyboard!                   |             |\n";
     std::cout << std::setw(150) << "|            |                                                                                |             |\n";
     std::cout << std::setw(150) << "|            |                                                                                |             |\n";
-    std::cout << std::setw(150) << "|            |            5) If you succeed and go through all 5 night of game                |             |\n";
+    std::cout << std::setw(150) << "|            |            6) If you succeed and go through all 5 night of game                |             |\n";
     std::cout << std::setw(150) << "|            |               -TO BE CONTINUE- message will appear.                            |             |\n";
     std::cout << std::setw(150) << "|            |                                                                                |             |\n";
     std::cout << std::setw(150) << "|            |                                                                                |             |\n";
-    std::cout << std::setw(150) << "|            |            6) If you want to leave the game you need to press                  |             |\n";
+    std::cout << std::setw(150) << "|            |            7) If you want to leave the game you need to press                  |             |\n";
     std::cout << std::setw(150) << "|            |               the escape key.                                                  |             |\n";
     std::cout << std::setw(150) << "|            |                                                                                |             |\n";
     std::cout << std::setw(150) << "|            |                                                                                |             |\n";
-    std::cout << std::setw(150) << "|            |            7) Enjoy the game :) !                                              |             |\n";
+    std::cout << std::setw(150) << "|            |            8) Enjoy the game :) !                                              |             |\n";
     std::cout << std::setw(150) << "|            |                                                                                |             |\n";
     std::cout << std::setw(150) << "|            |________________________________________________________________________________|             |\n";
     std::cout << std::setw(150) << "|                                                                                                           |\n";

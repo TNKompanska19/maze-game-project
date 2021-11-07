@@ -199,19 +199,19 @@ bool runGame(char* player, char* enemy, char* trace, char* wall, int night, bool
 
         if (*mode) {
             if (direction[index] == 0) {
-                maze[yEnemyPos][xEnemyPos] = ' ';
+                if (maze[yEnemyPos][xEnemyPos] != *player) maze[yEnemyPos][xEnemyPos] = ' ';
                 maze[--yEnemyPos][xEnemyPos] = *enemy;
             }
             else if (direction[index] == 1) {
-                maze[yEnemyPos][xEnemyPos] = ' ';
+                if (maze[yEnemyPos][xEnemyPos] != *player) maze[yEnemyPos][xEnemyPos] = ' ';
                 maze[yEnemyPos][++xEnemyPos] = *enemy;
             }
             else if (direction[index] == 2) {
-                maze[yEnemyPos][xEnemyPos] = ' ';
+                if (maze[yEnemyPos][xEnemyPos] != *player) maze[yEnemyPos][xEnemyPos] = ' ';
                 maze[++yEnemyPos][xEnemyPos] = *enemy;
             }
             else if (direction[index] == 3) {
-                maze[yEnemyPos][xEnemyPos] = ' ';
+                if (maze[yEnemyPos][xEnemyPos] != *player) maze[yEnemyPos][xEnemyPos] = ' ';
                 maze[yEnemyPos][--xEnemyPos] = *enemy;
             }
         }
@@ -220,7 +220,7 @@ bool runGame(char* player, char* enemy, char* trace, char* wall, int night, bool
 
         if (*mode) {
 
-            if (yPos == yEnemyPos && xPos == xEnemyPos) {
+            if ((yPos == yEnemyPos && xPos == xEnemyPos) || (yPos == yEnemyPos + 1 && xPos == xEnemyPos) || (yPos == yEnemyPos - 1 && xPos == xEnemyPos) || (xPos == xEnemyPos + 1 &&yPos == yEnemyPos) || (xPos == xEnemyPos - 1&&yPos == yEnemyPos)) {
                 gameOverInput();
                 std::cin.get();
                 menuInput();
