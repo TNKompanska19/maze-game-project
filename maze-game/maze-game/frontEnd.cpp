@@ -157,8 +157,7 @@ bool menuInput() {
                 while (night <= 5) {
                     runGame(&player, &enemy, &trace, &wall, night++, &mode);
                 }
-                system("CLS");
-                menuInput();
+                endGameLabel();
                 break;
             }
             case 2: {
@@ -488,6 +487,7 @@ void displayHowToPlay() {
 }
 
 bool endGameLabel() {
+    system("cls");
     std::cout << "\33[1;34m";
     std::cout << std::setw(10000) << "                     \n";
     std::cout << std::setw(150) << "                /////////////////   ////////////       /////////     //////////        /////////   ////////////   //////      ///  /////////////////  ////   //////      ///   ///       ///   //////////   /////////                    \n";
@@ -504,6 +504,8 @@ bool endGameLabel() {
         Sleep(200);
         std::cout << "\n";
     }
+    std::cin.get();
+    menuInput();
     return 0;
 }
 
