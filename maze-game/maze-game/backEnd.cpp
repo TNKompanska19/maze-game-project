@@ -26,7 +26,7 @@ int isInPath(int x, int y, int width, int height) {
     return false;
 }
 
-void generetePath(int x, int y, char* maze[], int width, int height, char wall) {
+void generatePath(int x, int y, char* maze[], int width, int height, char wall) {
     maze[x][y] = ' ';
 
     int direction[4] = { 0, 1, 2, 3 };
@@ -54,7 +54,7 @@ void generetePath(int x, int y, char* maze[], int width, int height, char wall) 
         if (isInPath(x2, y2, width, height)) {
             if (maze[x2][y2] == wall) {
                 maze[x2 - nextX][y2 - nextY] = ' ';
-                generetePath(x2, y2, maze, width, height, wall);
+                generatePath(x2, y2, maze, width, height, wall);
             }
         }
     }
@@ -65,7 +65,7 @@ void generetePath(int x, int y, char* maze[], int width, int height, char wall) 
 void generateMaze(char* maze[], int width, int height, char wall) {
     srand(time(NULL));
     resetMaze(maze, width, height, wall);
-    generetePath(1, 1, maze, width, height, wall);
+    generatePath(1, 1, maze, width, height, wall);
 }
 
 bool checkIfPossibleEnemyMove(int direction, char* maze[], int width, int height, int yEnemyPos, int xEnemyPos, char wall) {
@@ -219,13 +219,13 @@ bool runGame(char* player, char* enemy, char* trace, char* wall, int night, bool
         system("cls");
 
         if (hardMode) {
+
             if (yPos == yEnemyPos && xPos == xEnemyPos) {
-                std::cout << "You lost :(";
+                gameOverInput();
                 std::cin.get();
                 menuInput();
             }
         }
-
         displayNightMessage(night);
 
 
@@ -252,4 +252,5 @@ bool runGame(char* player, char* enemy, char* trace, char* wall, int night, bool
     }
 
     return 0;
+
 }
