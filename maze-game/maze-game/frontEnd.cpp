@@ -160,7 +160,7 @@ bool menuInput() {
             }
             case 2: {
                 system("CLS");
-                displaySettingsMenu(&player, &trace, &enemy, &wall);
+                displaySettingsMenuInput(&player, &trace, &enemy, &wall);
                 menuInput();
                 break;
             }
@@ -177,9 +177,7 @@ bool menuInput() {
         }
     }
 }
-
-void displaySettingsMenu(char* player, char* trace, char* enemy, char* wall) {
-    
+void displaySettingsMenu(int counter) {
     std::cout << "\n\n\n";
     std::cout << std::setw(175) << "====================================================================================================================================================\n\n";
     std::cout << std::setw(169) << "               //////////     //////////    /////////////     /////////////     /////////////       //////      ///       ///////////     //////////\n";
@@ -191,42 +189,169 @@ void displaySettingsMenu(char* player, char* trace, char* enemy, char* wall) {
     std::cout << std::setw(170) << "         //////////     //////////         ///               ///          /////////////       ///       /////      ///////////      //////////      \n\n";
     std::cout << std::setw(175) << "====================================================================================================================================================\n\n";
     std::cout << "\n\n\n\n\n\n\n";
-    std::cout << std::setw(110) << "1. C H A N G E   P L A Y E R" << std::endl;
-    std::cout << std::setw(108) << "2. C H A N G E   T R A C E" << std::endl;
-    std::cout << std::setw(108) << "3. C H A N G E   E N E M Y" << std::endl;
-    std::cout << std::setw(106) << "4. C H A N G E   W A L L" << std::endl;
-    std::cout << std::setw(112) << "5. E A S Y / H A R D   M O D E" << std::endl;
-    std::cout << std::setw(108) << "0. B A C K   T O   M E N U" << std::endl;
-
+    if (counter == 1) {
+        std::cout << std::setw(110) << "--> C H A N G E   P L A Y E R" << std::endl;
+        std::cout << std::setw(108) << "    C H A N G E   T R A C E" << std::endl;
+        std::cout << std::setw(108) << "    C H A N G E   E N E M Y" << std::endl;
+        std::cout << std::setw(106) << "    C H A N G E   W A L L" << std::endl;
+        std::cout << std::setw(112) << "    E A S Y / H A R D   M O D E" << std::endl;
+        std::cout << std::setw(108) << "    B A C K   T O   M E N U" << std::endl;
+    }
+    if (counter == 2) {
+        std::cout << std::setw(110) << "    C H A N G E   P L A Y E R" << std::endl;
+        std::cout << std::setw(108) << "--> C H A N G E   T R A C E" << std::endl;
+        std::cout << std::setw(108) << "    C H A N G E   E N E M Y" << std::endl;
+        std::cout << std::setw(106) << "    C H A N G E   W A L L" << std::endl;
+        std::cout << std::setw(112) << "    E A S Y / H A R D   M O D E" << std::endl;
+        std::cout << std::setw(108) << "    B A C K   T O   M E N U" << std::endl;
+    }
+    if (counter == 3) {
+        std::cout << std::setw(110) << "    C H A N G E   P L A Y E R" << std::endl;
+        std::cout << std::setw(108) << "    C H A N G E   T R A C E" << std::endl;
+        std::cout << std::setw(108) << "--> C H A N G E   E N E M Y" << std::endl;
+        std::cout << std::setw(106) << "   C H A N G E   W A L L" << std::endl;
+        std::cout << std::setw(112) << "   E A S Y / H A R D   M O D E" << std::endl;
+        std::cout << std::setw(108) << "   B A C K   T O   M E N U" << std::endl;
+    }
+    if (counter == 4) {
+        std::cout << std::setw(110) << "    C H A N G E   P L A Y E R" << std::endl;
+        std::cout << std::setw(108) << "    C H A N G E   T R A C E" << std::endl;
+        std::cout << std::setw(108) << "    C H A N G E   E N E M Y" << std::endl;
+        std::cout << std::setw(106) << "--> C H A N G E   W A L L" << std::endl;
+        std::cout << std::setw(112) << "    E A S Y / H A R D   M O D E" << std::endl;
+        std::cout << std::setw(108) << "    B A C K   T O   M E N U" << std::endl;
+    }
+    if (counter == 5) {
+        std::cout << std::setw(110) << "    C H A N G E   P L A Y E R" << std::endl;
+        std::cout << std::setw(108) << "    C H A N G E   T R A C E" << std::endl;
+        std::cout << std::setw(108) << "    C H A N G E   E N E M Y" << std::endl;
+        std::cout << std::setw(106) << "    C H A N G E   W A L L" << std::endl;
+        std::cout << std::setw(112) << "--> E A S Y / H A R D   M O D E" << std::endl;
+        std::cout << std::setw(108) << "    B A C K   T O   M E N U" << std::endl;
+    }
+    if (counter == 6) {
+        std::cout << std::setw(110) << "    C H A N G E   P L A Y E R" << std::endl;
+        std::cout << std::setw(108) << "    C H A N G E   T R A C E" << std::endl;
+        std::cout << std::setw(108) << "    C H A N G E   E N E M Y" << std::endl;
+        std::cout << std::setw(106) << "    C H A N G E   W A L L" << std::endl;
+        std::cout << std::setw(112) << "    E A S Y / H A R D   M O D E" << std::endl;
+        std::cout << std::setw(108) << "--> B A C K   T O   M E N U" << std::endl;
+    }
+}
+void displaySettingsMenuInput(char* player, char* trace, char* enemy, char* wall) {
+    
     char playerTemp;
     char traceTemp;
     char enemyTemp;
     char wallTemp;
 
+   
     int choice;
-    std::cin >> choice;
+    int counter = 1;
+    displaySettingsMenu(counter);
+
+    while (true)
+    {
+        switch ((choice = _getch())) {
+        case KEY_UP:
+        {
+            if (counter == 1) counter = 7;
+            counter--;
+            system("CLS");
+            displaySettingsMenu(counter);
+        } break;
+        case KEY_DOWN:
+        {
+            if (counter == 6) counter = 0;
+            counter++;
+            system("CLS");
+            displaySettingsMenu(counter);
+        } break;
+        case ENTER: {
+            switch (counter) {
+            case 1: {
+                system("CLS");
+                std::cout << "Change player:";
+                std::cin >> playerTemp;
+                *player = playerTemp;
+                int choice = _getch();
+                if (choice == ESCAPE) {
+                    system("CLS");
+                    displaySettingsMenu(counter);
+                }
+            }break;
+            case 2: {
+                system("CLS");
+                std::cout << "Change trace:";
+                std::cin >> traceTemp;
+                *trace = traceTemp;
+                int choice = _getch();
+                if (choice == ESCAPE) {
+                    system("CLS");
+                    displaySettingsMenu(counter);
+                }
+            }break;
+            case 3: {
+                system("CLS");
+                std::cout << "Change enemy:";
+                std::cin >> enemyTemp;
+                *enemy = enemyTemp;
+                int choice = _getch();
+                if (choice == ESCAPE) {
+                    system("CLS");
+                    displaySettingsMenu(counter);
+                }
+            }break;
+            case 4: {
+                system("CLS");
+                std::cout << "Change wall:";
+                std::cin >> wallTemp;
+                *wall = wallTemp;
+                int choice = _getch();
+                if (choice == ESCAPE) {
+                    system("CLS");
+                    displaySettingsMenu(counter);
+                }
+            }break;
+            case 5: {
+                system("CLS");
+                std::cout << "Choose easy/hard mode:";
+                int choice = _getch();
+                if (choice == ESCAPE) {
+                    system("CLS");
+                    displaySettingsMenu(counter);
+                }
+            }break;
+            case 6: {
+                system("CLS");
+                menuInput();
+            }break;
+
+            }
+        } break;
+        }
+    }
     
-    if (choice == 0) {
+   /* if (choice == 0) {
         menuInput();
     }
     else if (choice == 1) {
-        std::cin >> playerTemp;
-        *player = playerTemp;
+        
     }
     else if (choice == 2) {
-        std::cin >> traceTemp;
-        *trace = traceTemp;
+        
     }
     else if (choice == 3) {
-        std::cin >> enemyTemp;
-        *enemy = enemyTemp;
+       
     }
     else if (choice == 4) {
-        std::cin >> wallTemp;
-        *wall = wallTemp;
-    }
+       
+    }*/
+
+    
 
 }
+
 
 void displayNightMessage(int night) {
     switch (night) {

@@ -2,7 +2,8 @@
 
 void menu(int counter);
 bool menuInput();
-void displaySettingsMenu(char* player, char* trace, char* enemy, char* wall);
+void displaySettingsMenu(int counter);
+void displaySettingsMenuInput(char* player, char* trace, char* enemy, char* wall);
 void displayNightMessage(int night);
 void displayHowToPlay();
 bool endGameLabel();
