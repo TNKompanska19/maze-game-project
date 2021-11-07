@@ -76,7 +76,7 @@ bool checkIfPossibleEnemyMove(int direction, char* maze[], int width, int height
     return false;
 }
 
-bool runGame(char* player, char* enemy, char* trace, char* wall, int night, bool hardMode) {
+bool runGame(char* player, char* enemy, char* trace, char* wall, int night, bool* mode) {
     system("cls");
 
     int width;
@@ -121,7 +121,7 @@ bool runGame(char* player, char* enemy, char* trace, char* wall, int night, bool
     generateMaze(maze, height, width, *wall);
 
     maze[1][0] = *player;
-    if (hardMode) maze[width - 2][height - 1] = *enemy;
+    if (*mode) maze[width - 2][height - 1] = *enemy;
 
     displayNightMessage(night);
 
@@ -132,7 +132,7 @@ bool runGame(char* player, char* enemy, char* trace, char* wall, int night, bool
             if (maze[i][j] == *player || maze[i][j] == *trace) {
                 std::cout << " " << "\033[0m" << maze[i][j] << "\033[0;32m";
             }
-            else if (maze[i][j] == *enemy && hardMode) {
+            else if (maze[i][j] == *enemy && *mode) {
                 std::cout << " " << "\033[0;31m" << maze[i][j] << "\033[0;32m";
             }
             else std::cout << " " << maze[i][j];
@@ -154,7 +154,7 @@ bool runGame(char* player, char* enemy, char* trace, char* wall, int night, bool
             direction[i] = temp;
         }
         for (int i = 0; i < 4; i++) {
-            if (checkIfPossibleEnemyMove(direction[i], maze, height, width, yEnemyPos, xEnemyPos, *wall) && hardMode) {
+            if (checkIfPossibleEnemyMove(direction[i], maze, height, width, yEnemyPos, xEnemyPos, *wall) && *mode) {
                 index = i;
                 break;
             }
@@ -197,7 +197,7 @@ bool runGame(char* player, char* enemy, char* trace, char* wall, int night, bool
             menuInput();
         }
 
-        if (hardMode) {
+        if (*mode) {
             if (direction[index] == 0) {
                 maze[yEnemyPos][xEnemyPos] = ' ';
                 maze[--yEnemyPos][xEnemyPos] = *enemy;
@@ -218,7 +218,7 @@ bool runGame(char* player, char* enemy, char* trace, char* wall, int night, bool
 
         system("cls");
 
-        if (hardMode) {
+        if (*mode) {
 
             if (yPos == yEnemyPos && xPos == xEnemyPos) {
                 gameOverInput();
@@ -236,7 +236,7 @@ bool runGame(char* player, char* enemy, char* trace, char* wall, int night, bool
                 if (maze[i][j] == *player || maze[i][j] == *trace) {
                     std::cout << " " << "\033[0m" << maze[i][j] << "\033[0;32m";
                 }
-                else if (maze[i][j] == *enemy && hardMode) {
+                else if (maze[i][j] == *enemy && *mode) {
                     std::cout << " " << "\033[0;31m" << maze[i][j] << "\033[0;32m";
                 }
                 else std::cout << " " << maze[i][j];

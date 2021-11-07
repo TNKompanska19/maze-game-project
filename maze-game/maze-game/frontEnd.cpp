@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstring>
 #include <iomanip>
 #include <conio.h>
 #include <windows.h>
@@ -17,6 +18,7 @@ char player = '?';
 char trace = '.';
 char wall = '#';
 char enemy = '9';
+bool mode = 0;
 
 void menu(int counter) {
     system("cls");
@@ -152,7 +154,7 @@ bool menuInput() {
             case 1: {
 
                 while (night <= 5) {
-                    runGame(&player, &enemy, &trace, &wall, night++);
+                    runGame(&player, &enemy, &trace, &wall, night++, &mode);
                 }
                 system("CLS");
                 menuInput();
@@ -160,7 +162,7 @@ bool menuInput() {
             }
             case 2: {
                 system("CLS");
-                displaySettingsMenuInput(&player, &trace, &enemy, &wall);
+                displaySettingsMenuInput(&player, &trace, &enemy, &wall, &mode);
                 menuInput();
                 break;
             }
@@ -238,13 +240,13 @@ void displaySettingsMenu(int counter) {
         std::cout << std::setw(108) << "--> B A C K   T O   M E N U" << std::endl;
     }
 }
-void displaySettingsMenuInput(char* player, char* trace, char* enemy, char* wall) {
+void displaySettingsMenuInput(char* player, char* trace, char* enemy, char* wall, bool* mode) {
     
     char playerTemp;
-    char traceTemp;
+    std::string traceTemp;
     char enemyTemp;
     char wallTemp;
-
+    bool modeTemp;
    
     int choice;
     int counter = 1;
@@ -271,56 +273,55 @@ void displaySettingsMenuInput(char* player, char* trace, char* enemy, char* wall
             switch (counter) {
             case 1: {
                 system("CLS");
-                std::cout << "Change player:";
+                std::cout << "Change player: ";
                 std::cin >> playerTemp;
                 *player = playerTemp;
-                int choice = _getch();
-                if (choice == ESCAPE) {
-                    system("CLS");
-                    displaySettingsMenu(counter);
-                }
+                system("CLS");
+                displaySettingsMenu(counter);
+
             }break;
             case 2: {
                 system("CLS");
-                std::cout << "Change trace:";
+                std::cout << "Change trace (type \"none\" to disable trace): ";
                 std::cin >> traceTemp;
-                *trace = traceTemp;
-                int choice = _getch();
-                if (choice == ESCAPE) {
-                    system("CLS");
-                    displaySettingsMenu(counter);
+                if (traceTemp == "none") *trace = ' ';
+                else {
+                    const char* temp = traceTemp.c_str();
+                    *trace = *temp;
                 }
+                
+                system("CLS");
+                displaySettingsMenu(counter);
+
             }break;
             case 3: {
                 system("CLS");
-                std::cout << "Change enemy:";
+                std::cout << "Change enemy: ";
                 std::cin >> enemyTemp;
                 *enemy = enemyTemp;
-                int choice = _getch();
-                if (choice == ESCAPE) {
-                    system("CLS");
-                    displaySettingsMenu(counter);
-                }
+
+                system("CLS");
+                displaySettingsMenu(counter);
+
             }break;
             case 4: {
                 system("CLS");
-                std::cout << "Change wall:";
+                std::cout << "Change wall: ";
                 std::cin >> wallTemp;
                 *wall = wallTemp;
-                int choice = _getch();
-                if (choice == ESCAPE) {
-                    system("CLS");
-                    displaySettingsMenu(counter);
-                }
+
+                system("CLS");
+                displaySettingsMenu(counter);
+
             }break;
             case 5: {
                 system("CLS");
-                std::cout << "Choose easy/hard mode:";
-                int choice = _getch();
-                if (choice == ESCAPE) {
-                    system("CLS");
-                    displaySettingsMenu(counter);
-                }
+                std::cout << "Choose easy/hard mode (0 -> easy, 1 -> hard): ";
+                std::cin >> modeTemp;
+                *mode = modeTemp;
+                system("CLS");
+                displaySettingsMenu(counter);
+
             }break;
             case 6: {
                 system("CLS");
@@ -622,7 +623,7 @@ void gameOverInput() {
 
                 int height = 15, width = 15;
                 while (night <= 5) {
-                    runGame(&player, &enemy, &trace, &wall, night++);
+                    runGame(&player, &enemy, &trace, &wall, night++, &mode);
                 }
                 system("CLS");
                 menuInput();
