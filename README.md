@@ -47,7 +47,10 @@
 <p align="center">-> When you open the console to play, the menu displays. There are one spider on the left of the menu and one man on the right of the menu.</h3>
 <p align="center"><img src = "https://i.imgur.com/bCxxLmN.png"></p><br>
 <p align="center">->Then, if you want to play the game, you should choose the first option and thhe game starts with first night. You are the white symbol and the enemy is the red symbol.</p>
- <img src="" width="1000">
+ <p align="center"><img src="https://i.imgur.com/FLFiTXD.gif"></p>
+ <hr>
+ <h4 align = "center">✨When you lose the game, the menu will appear. If you complete the give nights, you pass the game and a message will appear. You can also choose to view the rules or to change settings, but if you want to know more, you should play the game. :)✨</h4>
+ <hr>
 
 
 
