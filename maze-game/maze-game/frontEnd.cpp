@@ -13,6 +13,11 @@
 #define ENTER 13
 #define ESCAPE 27
 
+char player = '?';
+char trace = '.';
+char wall = '#';
+char enemy = '9';
+
 void menu(int counter) {
     system("cls");
     std::cout << "\033[1;31m";
@@ -112,22 +117,19 @@ bool exit(){
     std::cout << "Exited";
     return 0;
 }
-void runHowToPlay() {
-    do {
-        displayHowToPlay();
-    } while (_getch() != 27);
-}
 bool menuInput() {
-    int choice;
     int counter = 1;
     int night = 1;
 
     
+
+    int height = 15, width = 15;
+
     menu(counter);
 
     while (true)
     {
-        switch ((choice = _getch())) {
+        switch (_getch()) {
         case KEY_UP:
         {
             if (counter == 1) counter = 5;
@@ -140,50 +142,44 @@ bool menuInput() {
             if (counter == 4) {
                 counter = 0;
             }
-            
+
             counter++;
             system("CLS");
             menu(counter);
         } break;
         case ENTER: {
             switch (counter) {
-                case 1: {
-                  char player = '?';
-                  char trace = '.';
-                  char wall = '#';
-                  char enemy = '9';
-    
-                   int height = 15, width = 15;
-                   while (night <= 5) {
-                       runGame(player, enemy, trace, wall, night++);
-                   }
-                  system("CLS");
-                   menuInput();
-                   break;
+            case 1: {
+
+                while (night <= 5) {
+                    runGame(&player, &enemy, &trace, &wall, night++);
                 }
-                case 2: {
-                    system("CLS");
-                    displaySettingsMenu();
-                    break;
-                }
-                case 3: {
-                    system("CLS");
-                    do {
-                        displayHowToPlay();
-                        system("cls");
-                    } while (_getch() != 27);
-                    break;
-                }
-                case 4: {
-                    exit();
-                }
+                system("CLS");
+                menuInput();
+                break;
+            }
+            case 2: {
+                system("CLS");
+                displaySettingsMenu(&player, &trace, &enemy, &wall);
+                menuInput();
+                break;
+            }
+            case 3: {
+                system("CLS");
+                displayHowToPlay();
+                break;
+            }
+            case 4: {
+                exit();
+            }
             }
         } break;
         }
     }
 }
 
-void displaySettingsMenu() {
+void displaySettingsMenu(char* player, char* trace, char* enemy, char* wall) {
+    
     std::cout << "\n\n\n";
     std::cout << std::setw(175) << "====================================================================================================================================================\n\n";
     std::cout << std::setw(169) << "               //////////     //////////    /////////////     /////////////     /////////////       //////      ///       ///////////     //////////\n";
@@ -195,6 +191,41 @@ void displaySettingsMenu() {
     std::cout << std::setw(170) << "         //////////     //////////         ///               ///          /////////////       ///       /////      ///////////      //////////      \n\n";
     std::cout << std::setw(175) << "====================================================================================================================================================\n\n";
     std::cout << "\n\n\n\n\n\n\n";
+    std::cout << std::setw(110) << "1. C H A N G E   P L A Y E R" << std::endl;
+    std::cout << std::setw(108) << "2. C H A N G E   T R A C E" << std::endl;
+    std::cout << std::setw(108) << "3. C H A N G E   E N E M Y" << std::endl;
+    std::cout << std::setw(106) << "4. C H A N G E   W A L L" << std::endl;
+    std::cout << std::setw(112) << "5. E A S Y / H A R D   M O D E" << std::endl;
+    std::cout << std::setw(108) << "0. B A C K   T O   M E N U" << std::endl;
+
+    char playerTemp;
+    char traceTemp;
+    char enemyTemp;
+    char wallTemp;
+
+    int choice;
+    std::cin >> choice;
+    
+    if (choice == 0) {
+        menuInput();
+    }
+    else if (choice == 1) {
+        std::cin >> playerTemp;
+        *player = playerTemp;
+    }
+    else if (choice == 2) {
+        std::cin >> traceTemp;
+        *trace = traceTemp;
+    }
+    else if (choice == 3) {
+        std::cin >> enemyTemp;
+        *enemy = enemyTemp;
+    }
+    else if (choice == 4) {
+        std::cin >> wallTemp;
+        *wall = wallTemp;
+    }
+
 }
 
 void displayNightMessage(int night) {
@@ -323,6 +354,10 @@ void displayHowToPlay() {
     char toReturn = _getch();
     if (toReturn == ESCAPE) {
         menuInput();
+    }
+    else {
+        system("cls");
+        displayHowToPlay();
     }
 }
 
