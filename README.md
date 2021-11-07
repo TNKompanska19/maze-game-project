@@ -51,6 +51,16 @@
  <hr>
  <h4 align = "center">✨When you lose the game, the menu will appear. If you complete the give nights, you pass the game and a message will appear. You can also choose to view the rules or to change settings, but if you want to know more, you should play the game. :)✨</h4>
  <hr>
+ 
+<h1 align="center"><i>Installation</i></h1>
+<h3><i>1. Open the Command Prompt on your computer</i></h3>
+<h3><i>2. Clone the repo</i></h3>
+
+
+```
+git clone https://github.com/TNKompanska19/maze-game-project.git
+```
+
 
 
 
