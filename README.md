@@ -41,6 +41,13 @@
 
 <h2 align="center"><i>💫Our idea💫</i></h2>
 <p align="center"> Our idea for the project is to make a maze game that is based on the film called "The Maze Runner". <br> You are the player who needs to escape the maze, but there is one big hurdle - THE ENEMY (spider). You should run from it and pass 5 nights escaping the maze. </p>
-<p align = "center"><img src="https://i.imgur.com/eu1voa4.png"></p>
+<p align = "center"><img src="https://i.imgur.com/eu1voa4.png"></p><br>
+
+<h2 align="center"><i>👁️INTERFACE👁️</i></h2>
+<p align="center">-> When you open the console to play, the menu displays. There are one spider on the left of the menu and one man on the right of the menu.</h3>
+<p align="center"><img src = "https://i.imgur.com/bCxxLmN.png"></p><br>
+<p align="center">->Then, if you want to play the game, you should choose the first option and thhe game starts with first night. You are the white symbol and the enemy is the red symbol.</p>
+ <img src="" width="1000">
+
 
 
