@@ -275,8 +275,7 @@ void displaySettingsMenuInput(char* player, char* trace, char* enemy, char* wall
         case ENTER: {
             switch (counter) {
             case 1: {
-                system("CLS");
-                std::cout << "Change player: ";
+                std::cout << "\n\n\nChange player: ";
                 std::cin >> playerTemp;
                 *player = playerTemp;
                 system("CLS");
@@ -284,8 +283,7 @@ void displaySettingsMenuInput(char* player, char* trace, char* enemy, char* wall
 
             }break;
             case 2: {
-                system("CLS");
-                std::cout << "Change trace (type \"none\" to disable trace): ";
+                std::cout << "\n\n\nChange trace (type \"none\" to disable trace): ";
                 std::cin >> traceTemp;
                 if (traceTemp == "none") *trace = ' ';
                 else {
@@ -298,8 +296,7 @@ void displaySettingsMenuInput(char* player, char* trace, char* enemy, char* wall
 
             }break;
             case 3: {
-                system("CLS");
-                std::cout << "Change enemy: ";
+                std::cout << "\n\n\nChange enemy: ";
                 std::cin >> enemyTemp;
                 *enemy = enemyTemp;
 
@@ -308,8 +305,7 @@ void displaySettingsMenuInput(char* player, char* trace, char* enemy, char* wall
 
             }break;
             case 4: {
-                system("CLS");
-                std::cout << "Change wall: ";
+                std::cout << "\n\n\nChange wall: ";
                 std::cin >> wallTemp;
                 *wall = wallTemp;
 
@@ -318,8 +314,7 @@ void displaySettingsMenuInput(char* player, char* trace, char* enemy, char* wall
 
             }break;
             case 5: {
-                system("CLS");
-                std::cout << "Choose easy/hard mode (0 -> easy, 1 -> hard): ";
+                std::cout << "\n\n\nChoose easy/hard mode (0 -> easy, 1 -> hard): ";
                 std::cin >> modeTemp;
                 *mode = modeTemp;
                 system("CLS");
