@@ -17,7 +17,7 @@
 char player = '?';
 char trace = '.';
 char wall = '#';
-char enemy = '9';
+char enemy = '*';
 bool mode = 0;
 
 void menu(int counter) {
