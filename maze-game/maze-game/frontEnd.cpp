@@ -20,6 +20,7 @@ char wall = '#';
 char enemy = '*';
 bool mode = 0;
 
+// Displays the menu
 void menu(int counter) {
     system("cls");
     std::cout << "\033[1;31m";
@@ -114,12 +115,16 @@ void menu(int counter) {
 
 
 }
+
+// Exiting the program
 void exit() {
     system("cls");
     std::cout << "\nThank you for playing!";
     std::cin.get();
     std::cin.ignore();
 }
+
+// Ask the user for his choice of the main menu
 bool menuInput() {
     int counter = 1;
     int night = 1;
@@ -132,7 +137,9 @@ bool menuInput() {
 
     do 
     {
+        // Switch case for switching around the main menu
         switch (_getch()) {
+        // Arrow up
         case KEY_UP:
         {
             if (counter == 1) counter = 5;
@@ -140,37 +147,41 @@ bool menuInput() {
             system("CLS");
             menu(counter);
         } break;
+        // Arrow down
         case KEY_DOWN:
         {
             if (counter == 4) {
                 counter = 0;
             }
-
             counter++;
             system("CLS");
             menu(counter);
         } break;
+        // Enter
         case ENTER: {
             switch (counter) {
+            // Play the game
             case 1: {
-
                 while (night <= 5) {
                     runGame(&player, &enemy, &trace, &wall, night++, &mode);
                 }
                 endGameLabel();
                 break;
             }
+            // Change settings
             case 2: {
                 system("CLS");
                 displaySettingsMenuInput(&player, &trace, &enemy, &wall, &mode);
                 menuInput();
                 break;
             }
+            // Display rules
             case 3: {
                 system("CLS");
                 displayHowToPlay();
                 break;
             }
+             // Exit the program
             case 4: {
                 exit();
             }
@@ -181,6 +192,8 @@ bool menuInput() {
     } while (true);
     return 1;
 }
+
+// Display the settings menu
 void displaySettingsMenu(int counter) {
     std::cout << "\n\n\n";
     std::cout << std::setw(175) << "====================================================================================================================================================\n\n";
@@ -242,6 +255,8 @@ void displaySettingsMenu(int counter) {
         std::cout << std::setw(108) << "--> B A C K   T O   M E N U" << std::endl;
     }
 }
+
+// Ask the user for his choice of the settings
 void displaySettingsMenuInput(char* player, char* trace, char* enemy, char* wall, bool* mode) {
     
     char playerTemp;
@@ -256,7 +271,9 @@ void displaySettingsMenuInput(char* player, char* trace, char* enemy, char* wall
 
     while (true)
     {
+        // Switch case for switching around the settings menu
         switch ((choice = _getch())) {
+        // Arrow up
         case KEY_UP:
         {
             if (counter == 1) counter = 7;
@@ -264,6 +281,7 @@ void displaySettingsMenuInput(char* player, char* trace, char* enemy, char* wall
             system("CLS");
             displaySettingsMenu(counter);
         } break;
+        // Arrow down
         case KEY_DOWN:
         {
             if (counter == 6) counter = 0;
@@ -271,7 +289,9 @@ void displaySettingsMenuInput(char* player, char* trace, char* enemy, char* wall
             system("CLS");
             displaySettingsMenu(counter);
         } break;
+        // Enter
         case ENTER: {
+            // Switch case for choosing settings
             switch (counter) {
             case 1: {
                 std::cout << "\n\n\nChange player: ";
@@ -331,7 +351,7 @@ void displaySettingsMenuInput(char* player, char* trace, char* enemy, char* wall
     }
 }
 
-
+// Displays on which night you are
 void displayNightMessage(int night) {
     switch (night) {
     case 1: {
@@ -411,6 +431,7 @@ void displayNightMessage(int night) {
     }
 }
 
+// Displays rules
 void displayHowToPlay() {
     std::cout << std::setw(149) << "___________________________________________________________________________________________________________\n";
     std::cout << std::setw(150) << "|                                                                                                           |\n";
@@ -457,6 +478,7 @@ void displayHowToPlay() {
     std::cout << std::setw(150) << "|                                                                                                           |\n";
     std::cout << std::setw(150) << "|                                                                                                           |\n";
     std::cout << std::setw(150) << "|___________________________________________________________________________________________________________|\n";
+    // If the user choose the escape button, he returns to the menu
     char toReturn = _getch();
     if (toReturn == ESCAPE) {
         menuInput();
@@ -467,6 +489,7 @@ void displayHowToPlay() {
     }
 }
 
+// Displays the label when you pass all the nights
 bool endGameLabel() {
     system("cls");
     std::cout << "\33[1;34m";
@@ -479,9 +502,11 @@ bool endGameLabel() {
     std::cout << std::setw(150) << "                   ///         ///      ///       ///     ///   ///             ///           ///      ///   ///      //////         ///         ////   ///      //////   ///       ///   ///                                 \n";
     std::cout << std::setw(150) << "                  ///         ////////////       /////////     //////////        /////////   ////////////   ///       /////         ///         ////   ///       /////   /////////////   //////////                         \n\n";
 
+    // Suspend the program execution
     Sleep(3000);
 
     for (int i = 0; i < 60; i++) {
+        // Suspend the program execution
         Sleep(200);
         std::cout << "\n";
     }
@@ -490,6 +515,7 @@ bool endGameLabel() {
     return 0;
 }
 
+// Displays menu when you lose
 void gameOver(int counter) {
     system("cls");
 
@@ -574,6 +600,7 @@ void gameOver(int counter) {
     }
 }
 
+// Asks the user for his choice of the game over menu
 void gameOverInput() {
     int choice;
     int counter = 1;
@@ -584,7 +611,9 @@ void gameOverInput() {
 
     while (true)
     {
+        // Switch case for switching around the game over menu
         switch ((choice = _getch())) {
+        // Arrow up
         case KEY_UP:
         {
             if (counter == 1) counter = 3;
@@ -592,6 +621,7 @@ void gameOverInput() {
             system("CLS");
             gameOver(counter);
         } break;
+        // Arrow down
         case KEY_DOWN:
         {
             if (counter == 2) counter = 0;
@@ -599,11 +629,11 @@ void gameOverInput() {
             system("CLS");
             gameOver(counter);
         } break;
+        // Enter
         case ENTER: {
             switch (counter) {
-            case 1: {
-                
-
+            // Play again the game
+            case 1: {         
                 int height = 15, width = 15;
                 while (night <= 5) {
                     runGame(&player, &enemy, &trace, &wall, night++, &mode);
@@ -612,6 +642,7 @@ void gameOverInput() {
                 menuInput();
                 break;
             }
+            // Return to the main menu
             case 2: {
                 system("CLS");
                 menuInput();
