@@ -62,7 +62,6 @@ git clone https://github.com/TNKompanska19/maze-game-project.git
 ```
 
 
- <hr>
  
  <h1 align = "center"><b><i>💫 Hope you have fun!!! 💫</i></b></h1>
 
