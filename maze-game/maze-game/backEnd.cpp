@@ -95,7 +95,7 @@ bool checkIfPossibleEnemyMove(int direction, char* maze[], int width, int height
 
 bool runGame(char* player, char* enemy, char* trace, char* wall, int night, bool* mode)
 {
-    system("cls");
+    system("CLS");
 
     int width;
     int height;
@@ -262,7 +262,7 @@ bool runGame(char* player, char* enemy, char* trace, char* wall, int night, bool
             }
         }
 
-        system("cls");
+        system("CLS");
 
         if (*mode)
         {

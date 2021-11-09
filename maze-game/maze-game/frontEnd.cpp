@@ -21,8 +21,9 @@ char enemy = '*';
 bool mode = 0;
 
 // Displays the menu
-void menu(int counter) {
-    system("cls");
+void menu(int counter)
+{
+    system("CLS");
     std::cout << "\033[1;31m";
     std::cout << "\n \n \n";
     std::cout << "              /////////////////  ///       ///  ////////////     /////          /////  ///////////  ////  /////////////  ////////////     /////////////  ///       ///  //////     ///  //////     ///  ////////////  ///////////// \n";
@@ -45,7 +46,9 @@ void menu(int counter) {
     std::cout << "              \\\\\\\\\\\\\      ||||||      ///////         |  |   *     *      *       *        *|                                                     |    *       *    | |*     * *     *|  |                         ///////////      ////\n";
     std::cout << "               \\\\\\\\\\\\\     ||||||     ///////          |  |______________________     *  *   |      C  H  O  O  S  E   A N   O  P  T  I  O  N      | *     * *     * | |   *       *   |  |                        ///////////      ////\n";
     std::cout << "                \\\\\\\\\\\\\    ||||||    ///////           |   ____________________  | *        *|                                                     |    *       *    | |   *       *   |  |                         ////////       ////\n";
-    if (counter == 1) {
+
+    if (counter == 1)
+    {
 
         std::cout << "                 \\\\\\\\\\\\\   ||||||   ///////            |  |      *       *     | | *        *|                                                     |    *       *    | |_______________|  |                          ////         ////\n";
         std::cout << "                  \\\\\\\\\\\\\  ||||||  ///////             |  | * *     * *     * *| |    *  *   |    --------      P L A Y  G A M E      --------     | *     * *     * |_________________   |              ////////////////////////////\n";
@@ -61,7 +64,9 @@ void menu(int counter) {
         std::cout << "               //////     ||||||     \\\\\\\\\\\\\           |  |      *       *       *      *    |_____________________________________________________|    | |*       *  *       * *      |  |            //////     \\\\\\\\\\\\\n";
 
     }
-    else if (counter == 2) {
+
+    else if (counter == 2)
+    {
         std::cout << "                 \\\\\\\\\\\\\   ||||||   ///////            |  |      *       *     | | *        *|                                                     |    *       *    | |_______________|  |                          ////         ////\n";
         std::cout << "                  \\\\\\\\\\\\\  ||||||  ///////             |  | * *     * *     * *| |    *  *   |                  P L A Y  G A M E                   | *     * *     * |_________________   |              ////////////////////////////\n";
         std::cout << "                   \\\\\\\\\\\\\ |||||| ///////              |  |      *       *     | | *        *|                                                     |    *       *       *        *     |  |             ////    //////////// \n";
@@ -76,7 +81,9 @@ void menu(int counter) {
         std::cout << "               //////     ||||||     \\\\\\\\\\\\\           |  |      *       *       *      *    |_____________________________________________________|    | |*       *  *       * *      |  |            //////     \\\\\\\\\\\\\n";
 
     }
-    else if (counter == 3) {
+
+    else if (counter == 3)
+    {
         std::cout << "                 \\\\\\\\\\\\\   ||||||   ///////            |  |      *       *     | | *        *|                                                     |    *       *    | |_______________|  |                          ////         ////\n";
         std::cout << "                  \\\\\\\\\\\\\  ||||||  ///////             |  | * *     * *     * *| |    *  *   |                  P L A Y  G A M E                   | *     * *     * |_________________   |              ////////////////////////////\n";
         std::cout << "                   \\\\\\\\\\\\\ |||||| ///////              |  |      *       *     | | *        *|                                                     |    *       *       *        *     |  |             ////    //////////// \n";
@@ -90,7 +97,9 @@ void menu(int counter) {
         std::cout << "                //////    ||||||    \\\\\\\\\\\\\            |  | * *     * *     * *     * *      |                      E X I T                        |    | |   * *        * *       * * |  |             //////   \\\\\\\\\\\\\n";
         std::cout << "               //////     ||||||     \\\\\\\\\\\\\           |  |      *       *       *      *    |_____________________________________________________|    | |*       *  *       * *      |  |            //////     \\\\\\\\\\\\\n";
     }
-    else if (counter == 4) {
+
+    else if (counter == 4)
+    {
         std::cout << "                 \\\\\\\\\\\\\   ||||||   ///////            |  |      *       *     | | *        *|                                                     |    *       *    | |_______________|  |                          ////         ////\n";
         std::cout << "                  \\\\\\\\\\\\\  ||||||  ///////             |  | * *     * *     * *| |    *  *   |                  P L A Y  G A M E                   | *     * *     * |_________________   |              ////////////////////////////\n";
         std::cout << "                   \\\\\\\\\\\\\ |||||| ///////              |  |      *       *     | | *        *|                                                     |    *       *       *        *     |  |             ////    //////////// \n";
@@ -117,28 +126,31 @@ void menu(int counter) {
 }
 
 // Exiting the program
-void exit() {
-    system("cls");
+void exit()
+{
+    system("CLS");
     std::cout << "\nThank you for playing!";
     std::cin.get();
     std::cin.ignore();
 }
 
 // Ask the user for his choice of the main menu
-bool menuInput() {
+bool menuInput()
+{
     int counter = 1;
     int night = 1;
 
-    
+
 
     int height = 15, width = 15;
 
     menu(counter);
 
-    do 
+    do
     {
         // Switch case for switching around the main menu
-        switch (_getch()) {
+        switch (_getch())
+        {
         // Arrow up
         case KEY_UP:
         {
@@ -158,10 +170,12 @@ bool menuInput() {
             menu(counter);
         } break;
         // Enter
-        case ENTER: {
+        case ENTER:
+        {
             switch (counter) {
             // Play the game
-            case 1: {
+            case 1:
+            {
                 while (night <= 5) {
                     runGame(&player, &enemy, &trace, &wall, night++, &mode);
                 }
@@ -169,32 +183,36 @@ bool menuInput() {
                 break;
             }
             // Change settings
-            case 2: {
+            case 2:
+            {
                 system("CLS");
                 displaySettingsMenuInput(&player, &trace, &enemy, &wall, &mode);
                 menuInput();
                 break;
             }
             // Display rules
-            case 3: {
+            case 3:
+            {
                 system("CLS");
                 displayHowToPlay();
                 break;
             }
-             // Exit the program
-            case 4: {
+            // Exit the program
+            case 4:
+            {
                 exit();
             }
             }
         } break;
         }
-        
     } while (true);
     return 1;
 }
 
 // Display the settings menu
-void displaySettingsMenu(int counter) {
+void displaySettingsMenu(int counter)
+{
+    std::cout << "\033[1;34m";
     std::cout << "\n\n\n";
     std::cout << std::setw(175) << "====================================================================================================================================================\n\n";
     std::cout << std::setw(169) << "               //////////     //////////    /////////////     /////////////     /////////////       //////      ///       ///////////     //////////\n";
@@ -206,7 +224,9 @@ void displaySettingsMenu(int counter) {
     std::cout << std::setw(170) << "         //////////     //////////         ///               ///          /////////////       ///       /////      ///////////      //////////      \n\n";
     std::cout << std::setw(175) << "====================================================================================================================================================\n\n";
     std::cout << "\n\n\n\n\n\n\n";
-    if (counter == 1) {
+
+    if (counter == 1)
+    {
         std::cout << std::setw(110) << "--> C H A N G E   P L A Y E R" << std::endl;
         std::cout << std::setw(108) << "    C H A N G E   T R A C E" << std::endl;
         std::cout << std::setw(108) << "    C H A N G E   E N E M Y" << std::endl;
@@ -214,7 +234,8 @@ void displaySettingsMenu(int counter) {
         std::cout << std::setw(112) << "    E A S Y / H A R D   M O D E" << std::endl;
         std::cout << std::setw(108) << "    B A C K   T O   M E N U" << std::endl;
     }
-    if (counter == 2) {
+    if (counter == 2)
+    {
         std::cout << std::setw(110) << "    C H A N G E   P L A Y E R" << std::endl;
         std::cout << std::setw(108) << "--> C H A N G E   T R A C E" << std::endl;
         std::cout << std::setw(108) << "    C H A N G E   E N E M Y" << std::endl;
@@ -222,7 +243,8 @@ void displaySettingsMenu(int counter) {
         std::cout << std::setw(112) << "    E A S Y / H A R D   M O D E" << std::endl;
         std::cout << std::setw(108) << "    B A C K   T O   M E N U" << std::endl;
     }
-    if (counter == 3) {
+    if (counter == 3)
+    {
         std::cout << std::setw(110) << "    C H A N G E   P L A Y E R" << std::endl;
         std::cout << std::setw(108) << "    C H A N G E   T R A C E" << std::endl;
         std::cout << std::setw(108) << "--> C H A N G E   E N E M Y" << std::endl;
@@ -230,7 +252,8 @@ void displaySettingsMenu(int counter) {
         std::cout << std::setw(112) << "   E A S Y / H A R D   M O D E" << std::endl;
         std::cout << std::setw(108) << "   B A C K   T O   M E N U" << std::endl;
     }
-    if (counter == 4) {
+    if (counter == 4)
+    {
         std::cout << std::setw(110) << "    C H A N G E   P L A Y E R" << std::endl;
         std::cout << std::setw(108) << "    C H A N G E   T R A C E" << std::endl;
         std::cout << std::setw(108) << "    C H A N G E   E N E M Y" << std::endl;
@@ -238,7 +261,8 @@ void displaySettingsMenu(int counter) {
         std::cout << std::setw(112) << "    E A S Y / H A R D   M O D E" << std::endl;
         std::cout << std::setw(108) << "    B A C K   T O   M E N U" << std::endl;
     }
-    if (counter == 5) {
+    if (counter == 5)
+    {
         std::cout << std::setw(110) << "    C H A N G E   P L A Y E R" << std::endl;
         std::cout << std::setw(108) << "    C H A N G E   T R A C E" << std::endl;
         std::cout << std::setw(108) << "    C H A N G E   E N E M Y" << std::endl;
@@ -246,7 +270,8 @@ void displaySettingsMenu(int counter) {
         std::cout << std::setw(112) << "--> E A S Y / H A R D   M O D E" << std::endl;
         std::cout << std::setw(108) << "    B A C K   T O   M E N U" << std::endl;
     }
-    if (counter == 6) {
+    if (counter == 6)
+    {
         std::cout << std::setw(110) << "    C H A N G E   P L A Y E R" << std::endl;
         std::cout << std::setw(108) << "    C H A N G E   T R A C E" << std::endl;
         std::cout << std::setw(108) << "    C H A N G E   E N E M Y" << std::endl;
@@ -257,14 +282,15 @@ void displaySettingsMenu(int counter) {
 }
 
 // Ask the user for his choice of the settings
-void displaySettingsMenuInput(char* player, char* trace, char* enemy, char* wall, bool* mode) {
-    
+void displaySettingsMenuInput(char* player, char* trace, char* enemy, char* wall, bool* mode)
+{
+
     char playerTemp;
     std::string traceTemp;
     char enemyTemp;
     char wallTemp;
     bool modeTemp;
-   
+
     int choice;
     int counter = 1;
     displaySettingsMenu(counter);
@@ -290,61 +316,66 @@ void displaySettingsMenuInput(char* player, char* trace, char* enemy, char* wall
             displaySettingsMenu(counter);
         } break;
         // Enter
-        case ENTER: {
+        case ENTER:
+        {
             // Switch case for choosing settings
-            switch (counter) {
-            case 1: {
+            switch (counter)
+            {
+            case 1:
+            {
                 std::cout << "\n\n\nChange player: ";
                 std::cin >> playerTemp;
                 *player = playerTemp;
+
                 system("CLS");
                 displaySettingsMenu(counter);
-
             }break;
-            case 2: {
+            case 2:
+            {
                 std::cout << "\n\n\nChange trace (type \"none\" to disable trace): ";
                 std::cin >> traceTemp;
                 if (traceTemp == "none") *trace = ' ';
-                else {
+                else
+                {
                     const char* temp = traceTemp.c_str();
                     *trace = *temp;
                 }
-                
+
                 system("CLS");
                 displaySettingsMenu(counter);
-
             }break;
-            case 3: {
+            case 3:
+            {
                 std::cout << "\n\n\nChange enemy: ";
                 std::cin >> enemyTemp;
                 *enemy = enemyTemp;
 
                 system("CLS");
                 displaySettingsMenu(counter);
-
             }break;
-            case 4: {
+            case 4:
+            {
                 std::cout << "\n\n\nChange wall: ";
                 std::cin >> wallTemp;
                 *wall = wallTemp;
 
                 system("CLS");
                 displaySettingsMenu(counter);
-
             }break;
-            case 5: {
+            case 5:
+            {
                 std::cout << "\n\n\nChoose easy/hard mode (0 -> easy, 1 -> hard): ";
                 std::cin >> modeTemp;
                 *mode = modeTemp;
+
                 system("CLS");
                 displaySettingsMenu(counter);
-
             }break;
-            case 6: {
+            case 6:
+            {
                 system("CLS");
                 menuInput();
             }break;
-
             }
         } break;
         }
@@ -352,9 +383,12 @@ void displaySettingsMenuInput(char* player, char* trace, char* enemy, char* wall
 }
 
 // Displays on which night you are
-void displayNightMessage(int night) {
-    switch (night) {
-    case 1: {
+void displayNightMessage(int night)
+{
+    switch (night)
+    {
+    case 1:
+    {
         std::cout << "\033[0;35m";
         std::cout << "\n\n\n";
         std::cout << std::setw(156) << "==============================================================================================================\n\n";
@@ -369,7 +403,8 @@ void displayNightMessage(int night) {
         std::cout << "\n\n\n\n\n\n\n";
     } break;
 
-    case 2: {
+    case 2:
+    {
         std::cout << "\033[0;35m";
         std::cout << "\n\n\n";
         std::cout << std::setw(163) << "==========================================================================================================================\n\n";
@@ -384,7 +419,8 @@ void displayNightMessage(int night) {
         std::cout << "\n\n\n\n\n\n\n";
     } break;
 
-    case 3: {
+    case 3:
+    {
         std::cout << "\033[0;35m";
         std::cout << "\n\n\n";
         std::cout << std::setw(166) << "========================================================================================================================================\n\n";
@@ -399,7 +435,8 @@ void displayNightMessage(int night) {
         std::cout << "\n\n\n\n\n\n\n";
     } break;
 
-    case 4: {
+    case 4:
+    {
         std::cout << "\033[0;35m";
         std::cout << "\n\n\n";
         std::cout << std::setw(150) << "=========================================================================================================================\n\n";
@@ -414,7 +451,8 @@ void displayNightMessage(int night) {
         std::cout << "\n\n\n\n\n\n\n";
     } break;
 
-    case 5: {
+    case 5:
+    {
         std::cout << "\033[0;35m";
         std::cout << "\n\n\n";
         std::cout << std::setw(152) << "===============================================================================================================\n\n";
@@ -432,7 +470,9 @@ void displayNightMessage(int night) {
 }
 
 // Displays rules
-void displayHowToPlay() {
+void displayHowToPlay()
+{
+    std::cout << "\033[1;34m";
     std::cout << std::setw(149) << "___________________________________________________________________________________________________________\n";
     std::cout << std::setw(150) << "|                                                                                                           |\n";
     std::cout << std::setw(150) << "|                                                                                                           |\n";
@@ -480,18 +520,21 @@ void displayHowToPlay() {
     std::cout << std::setw(150) << "|___________________________________________________________________________________________________________|\n";
     // If the user choose the escape button, he returns to the menu
     char toReturn = _getch();
-    if (toReturn == ESCAPE) {
+    if (toReturn == ESCAPE)
+    {
         menuInput();
     }
-    else {
-        system("cls");
+    else
+    {
+        system("CLS");
         displayHowToPlay();
     }
 }
 
 // Displays the label when you pass all the nights
-bool endGameLabel() {
-    system("cls");
+bool endGameLabel()
+{
+    system("CLS");
     std::cout << "\33[1;34m";
     std::cout << std::setw(10000) << "                     \n";
     std::cout << std::setw(150) << "                /////////////////   ////////////       /////////     //////////        /////////   ////////////   //////      ///  /////////////////  ////   //////      ///   ///       ///   //////////                     \n";
@@ -505,7 +548,8 @@ bool endGameLabel() {
     // Suspend the program execution
     Sleep(3000);
 
-    for (int i = 0; i < 60; i++) {
+    for (int i = 0; i < 60; i++)
+    {
         // Suspend the program execution
         Sleep(200);
         std::cout << "\n";
@@ -516,8 +560,9 @@ bool endGameLabel() {
 }
 
 // Displays menu when you lose
-void gameOver(int counter) {
-    system("cls");
+void gameOver(int counter)
+{
+    system("CLS");
 
     std::cout << "\033[0;36m ";
     std::cout << "\n\n\n\n\n";
@@ -529,7 +574,8 @@ void gameOver(int counter) {
     std::cout << "\t\t\t\t\t" << "    ////      ///  ///     ///   ///              ///   ///                 ///      ///   ///       ///  ///           ///       ///          \n";
     std::cout << "\t\t\t\t\t" << "       /////////  ///     ///   ///              ///   ////////////        ////////////    ///////////   ////////////  ///       ///      \n\n\n";
 
-    if (counter == 1) {
+    if (counter == 1)
+    {
         std::cout << "\t\t\t\t\t\t" << "     _______________________________________________________________________________________________________________\n";
         std::cout << "\t\t\t\t\t\t" << "    |+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|\n";
         std::cout << "\t\t\t\t\t\t" << "    |+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|\n";
@@ -563,7 +609,8 @@ void gameOver(int counter) {
         std::cout << "\t\t\t\t\t\t" << "    |+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|\n";
         std::cout << "\t\t\t\t\t\t" << "    |_______________________________________________________________________________________________________________|\n";
     }
-    else if (counter == 2) {
+    else if (counter == 2)
+    {
         std::cout << "\t\t\t\t\t\t" << "     _______________________________________________________________________________________________________________\n";
         std::cout << "\t\t\t\t\t\t" << "    |+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|\n";
         std::cout << "\t\t\t\t\t\t" << "    |+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|\n";
@@ -601,7 +648,8 @@ void gameOver(int counter) {
 }
 
 // Asks the user for his choice of the game over menu
-void gameOverInput() {
+void gameOverInput()
+{
     int choice;
     int counter = 1;
     int night = 1;
@@ -612,7 +660,8 @@ void gameOverInput() {
     while (true)
     {
         // Switch case for switching around the game over menu
-        switch ((choice = _getch())) {
+        switch ((choice = _getch()))
+        {
         // Arrow up
         case KEY_UP:
         {
@@ -630,12 +679,16 @@ void gameOverInput() {
             gameOver(counter);
         } break;
         // Enter
-        case ENTER: {
-            switch (counter) {
+        case ENTER:
+        {
+            switch (counter)
+            {
             // Play again the game
-            case 1: {         
+            case 1:
+            {
                 int height = 15, width = 15;
-                while (night <= 5) {
+                while (night <= 5)
+                {
                     runGame(&player, &enemy, &trace, &wall, night++, &mode);
                 }
                 system("CLS");
@@ -643,12 +696,12 @@ void gameOverInput() {
                 break;
             }
             // Return to the main menu
-            case 2: {
+            case 2:
+            {
                 system("CLS");
                 menuInput();
                 break;
             }
-
             }
         } break;
         }
